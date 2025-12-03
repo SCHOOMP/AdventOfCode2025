@@ -11,6 +11,7 @@ public class Program
         switch (day)
         {
             case 1: Day01.Run(); break;
+            case 2: Day02.Run(); break;
            
             // ...
             // case 25: Day25.Run(); break;

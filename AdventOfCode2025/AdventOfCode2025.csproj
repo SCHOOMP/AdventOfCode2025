@@ -13,5 +13,8 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Days\Day022\" />
+    </ItemGroup>
 
 </Project>
