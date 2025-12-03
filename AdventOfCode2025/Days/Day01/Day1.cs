@@ -9,41 +9,60 @@ public static class Day01
     {
         string inputPath = Path.Combine("Days", "Day01", "input.txt");
         string[] input = File.ReadAllLines(inputPath);
-        int dial = 50;
-        int zeroIncrement = 0;
 
-        for (int i = 0; i < input.Length; i++)
-        {
-            string current = input[i];
-            char direction = current[0];
-            string distancePart = current.Substring(1);
-            int distance = int.Parse(distancePart);
+        int part1Result = SolvePart1(input);
+        int part2Result = SolvePart2(input);
 
-            if (direction == 'R')
-            {
-                dial = (dial + distance) % 100;
-                zeroIncrement = CheckIfZero(dial, zeroIncrement);
-            }
-
-            if (direction == 'L')
-            {
-                dial = (dial - distance + 100) % 100; // ensure positive modulo
-                zeroIncrement = CheckIfZero(dial, zeroIncrement);
-            }
-        }
-
-        Console.WriteLine("Password is " + zeroIncrement);
-
-
+        Console.WriteLine($"Day 01 - Part 1: {part1Result}");
+        Console.WriteLine($"Day 01 - Part 2: {part2Result}");
     }
 
-    private static int CheckIfZero(int dial, int increment)
+    // Part 1: counts dial landing on 0 after each rotation
+    private static int SolvePart1(string[] input)
     {
-        if (dial == 0)
+        int dial = 50;
+        int zeroCount = 0;
+
+        foreach (string current in input)
         {
-            increment += 1;
+            char direction = current[0];
+            int distance = int.Parse(current.Substring(1));
+
+            if (direction == 'R')
+                dial = (dial + distance) % 100;
+            else if (direction == 'L')
+                dial = (dial - distance + 100) % 100;
+
+            if (dial == 0)
+                zeroCount++;
         }
-        
-        return increment;
+
+        return zeroCount;
+    }
+
+    // Part 2: counts every time the dial points to 0 during rotations
+    private static int SolvePart2(string[] input)
+    {
+        int dial = 50;
+        int zeroCount = 0;
+
+        foreach (string current in input)
+        {
+            char direction = current[0];
+            int distance = int.Parse(current.Substring(1));
+
+            for (int i = 0; i < distance; i++)
+            {
+                if (direction == 'R')
+                    dial = (dial + 1) % 100;
+                else if (direction == 'L')
+                    dial = (dial - 1 + 100) % 100;
+
+                if (dial == 0)
+                    zeroCount++;
+            }
+        }
+
+        return zeroCount;
     }
 }
