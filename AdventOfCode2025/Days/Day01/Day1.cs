@@ -16,8 +16,10 @@ public static class Day01
         Console.WriteLine($"Day 01 - Part 1: {part1Result}");
         Console.WriteLine($"Day 01 - Part 2: {part2Result}");
     }
-
+    
+    // -------------------------------
     // Part 1: counts dial landing on 0 after each rotation
+    // -------------------------------
     private static int SolvePart1(string[] input)
     {
         int dial = 50;
@@ -39,8 +41,10 @@ public static class Day01
 
         return zeroCount;
     }
-
+    
+    // -------------------------------
     // Part 2: counts every time the dial points to 0 during rotations
+    // -------------------------------
     private static int SolvePart2(string[] input)
     {
         int dial = 50;
